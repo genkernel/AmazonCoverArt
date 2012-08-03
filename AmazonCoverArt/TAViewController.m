@@ -23,6 +23,11 @@
 	assert(nil!=options);
 	NSString *key = options[@"Key"];
 	NSString *secret = options[@"Secret"];
+	if (0==key.length || 0==secret.length) {
+		NSLog(@"ERR. Amazon.plist - empty credentials information specified.");
+		return;
+	}
+	
 	AmazonCredentials *credentials = [[AmazonCredentials alloc] initWithAccessKey:key withSecretKey:secret];
 	
 	TAAmazonCoverArt *coverArtManager = [[TAAmazonCoverArt alloc] initWithAmazonCredentials:credentials];
